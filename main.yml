@@ -42,24 +42,24 @@
       vars:
         # NOTE: update PYTHON_VERSION in Makefile when changing this.
         # https://www.python.org/ftp/python/
-        python3_version: "3.9.2"
-        python3_macos_version: "10.9" # this is used in the .pkg file name.
+        python3_version: "3.9.13"
+        python3_macos_version: "11" # this is used in the .pkg file name.
         python3_version_major_minor: "{{ python3_version | regex_replace('^([0-9]+)\\.([0-9]+)(?:\\.[0-9]+)?$', '\\1.\\2') }}"
 
-    - role: mac-ports
-      tags: [foundational, package-and-build, bespoke-pkg, mac-ports]
-      vars:
-        # https://www.macports.org/install.php
-        macports_version: "2.6.4"
-        macports_pkg_version: "1"
-        macports_mac_release: "11-BigSur"
+    # - role: mac-ports
+    #   tags: [foundational, package-and-build, bespoke-pkg, mac-ports]
+    #   vars:
+    #     # https://www.macports.org/install.php
+    #     macports_version: "2.6.4"
+    #     macports_pkg_version: "1"
+    #     macports_mac_release: "11-BigSur"
 
     - role: node
       tags: [foundational, programming-languages, bespoke-pkg, node]
       vars:
         # https://nodejs.org/dist/
         # https://github.com/nodejs/node/releases
-        node_version: "15.11.0"
+        node_version: "18.9.0"
 
     - role: maven
       tags: [foundational, package-and-build, brew-pkg, maven]
@@ -81,17 +81,17 @@
     - role: ssh-keys
       tags: [configuration, ssh-keys]
 
-    - role: better-touch-tool
-      tags: [configuration, bespoke-pkg, better-touch-tool]
-      vars:
-        # https://folivora.ai/releases
-        better_touch_tool_version: "" # using latest
+    # - role: better-touch-tool
+    #   tags: [configuration, bespoke-pkg, better-touch-tool]
+    #   vars:
+    #     # https://folivora.ai/releases
+    #     better_touch_tool_version: "" # using latest
 
-    - role: dotfiles
-      tags: [configuration, dotfiles]
+    # - role: dotfiles
+    #   tags: [configuration, dotfiles]
 
-    - role: dotemacs
-      tags: [configuration, dotemacs]
+    # - role: dotemacs
+    #   tags: [configuration, dotemacs]
 
     #############################################################################
     # Programming languages #####################################################
@@ -100,16 +100,16 @@
     - role: clojure
       tags: [programming-languages, brew-pkg, clojure]
 
-    - role: java
-      tags: [programming-languages, brew-cask-pkg, java]
-      vars:
-        java_version: adoptopenjdk15
+    # - role: java
+    #   tags: [programming-languages, brew-cask-pkg, java]
+    #   vars:
+    #     java_version: adoptopenjdk15
 
     - role: go
       tags: [programming-languages, bespoke-pkg, go]
       vars:
         # https://dl.google.com/go/go1.16.1.darwin-amd64.pkg
-        go_version: "1.16.1"
+        go_version: "1.19.1"
 
     - role: rust
       tags: [programming-languages, rust]
@@ -117,7 +117,7 @@
     - role: ruby
       tags: [programming-languages, ruby]
       vars:
-        ruby_version: 3.0.0
+        ruby_version: 3.1.2
 
     - role: lua
       tags: [programming-languages, bespoke-pkg, lua]
@@ -131,39 +131,39 @@
     - role: r
       tags: [programming-languages, bespoke-pkg, r]
       vars:
-        r_version: "4.0.4"
+        r_version: "4.2.0"
 
     - role: haskell
       tags: [programming-languages, brew-pkg, haskell]
 
-    # DISABLED: `stack install purescript` is currently failing, disabling until
-    # I figure it out.
-    # https://gist.github.com/mpereira/a2418c458418cd01a2d18301eaeae85e
-    - role: purescript
-      tags: [disabled, programming-languages, purescript]
+    # # DISABLED: `stack install purescript` is currently failing, disabling until
+    # # I figure it out.
+    # # https://gist.github.com/mpereira/a2418c458418cd01a2d18301eaeae85e
+    # - role: purescript
+    #   tags: [disabled, programming-languages, purescript]
 
     #############################################################################
     # Text editors ##############################################################
     #############################################################################
 
-    - role: build-emacs
-      tags: [text-editors, brew-pkg, build-emacs]
+    # - role: build-emacs
+    #   tags: [text-editors, brew-pkg, build-emacs]
 
-    - role: emacs-pre-built
-      tags: [text-editors, bespoke-pkg, emacs-pre-built]
-      vars:
-        emacs_pre_built_version: "27.1"
-        emacs_pre_built_patch: "-1"
-        # emacs_pre_built_version: "26.1-rc1"
-        # emacs_pre_built_pretest: "yes"
+    # - role: emacs-pre-built
+    #   tags: [text-editors, bespoke-pkg, emacs-pre-built]
+    #   vars:
+    #     emacs_pre_built_version: "27.1"
+    #     emacs_pre_built_patch: "-1"
+    #     # emacs_pre_built_version: "26.1-rc1"
+    #     # emacs_pre_built_pretest: "yes"
 
-    # DISABLED: Vim isn't compiling on macOS Big Sur with LLVM 12, disabling
-    # until I figure it out.
-    # https://stackoverflow.com/questions/65750657/getting-an-error-on-configuring-vim-uint32-t-check-not-defined-correctly
-    - role: vim
-      tags: [disabled, text-editors, bespoke-pkg, vim]
-      vars:
-        vim_version: "8.2"
+    # # DISABLED: Vim isn't compiling on macOS Big Sur with LLVM 12, disabling
+    # # until I figure it out.
+    # # https://stackoverflow.com/questions/65750657/getting-an-error-on-configuring-vim-uint32-t-check-not-defined-correctly
+    # - role: vim
+    #   tags: [disabled, text-editors, bespoke-pkg, vim]
+    #   vars:
+    #     vim_version: "8.2"
 
     - role: neovim
       tags: [text-editors, bespoke-pkg, neovim]
@@ -174,11 +174,11 @@
     - role: vscode
       tags: [text-editors, brew-pkg, vscode]
 
-    - role: macvim
-      tags: [text-editors, bespoke-pkg, macvim]
-      vars:
-        # https://github.com/macvim-dev/macvim/releases
-        macvim_version: "snapshot-170"
+    # - role: macvim
+    #   tags: [text-editors, bespoke-pkg, macvim]
+    #   vars:
+    #     # https://github.com/macvim-dev/macvim/releases
+    #     macvim_version: "snapshot-170"
 
     #############################################################################
     # Behaviors #################################################################
@@ -191,20 +191,20 @@
     # Security ##################################################################
     #############################################################################
 
-    - role: prey
-      tags: [security, bespoke-pkg, prey]
-      vars:
-        prey_version: "1.9.2"
+    # - role: prey
+    #   tags: [security, bespoke-pkg, prey]
+    #   vars:
+    #     prey_version: "1.9.2"
 
-    - role: vault
-      tags: [security, npm-pkg, vault]
-      vars:
-        vault_version: "0.3.0"
+    # - role: vault
+    #   tags: [security, npm-pkg, vault]
+    #   vars:
+    #     vault_version: "0.3.0"
 
-    - role: gnupg
-      tags: [security, bespoke-pkg, gnupg]
-      vars:
-        gnupg_version: "2.2.17"
+    # - role: gnupg
+    #   tags: [security, bespoke-pkg, gnupg]
+    #   vars:
+    #     gnupg_version: "2.2.17"
 
     ############################################################################
     # Observability ############################################################
@@ -231,8 +231,8 @@
 
     # DISABLED: I'm not using this these days and its `yarn` binary conflicts
     # with the "yarn" JavaScript package manager.
-    - role: hadoop
-      tags: [disabled, data-systems, brew-pkg, hadoop]
+    # - role: hadoop
+    #   tags: [disabled, data-systems, brew-pkg, hadoop]
 
     ############################################################################
     # Document processing and plotting #########################################
@@ -585,8 +585,8 @@
     # Command line tools ########################################################
     #############################################################################
 
-    - role: pngpaste
-      tags: [command-line-tools, brew-pkg, pngpaste]
+    # - role: pngpaste
+    #   tags: [command-line-tools, brew-pkg, pngpaste]
 
     - role: git-delta
       tags: [command-line-tools, brew-pkg, git-delta]
@@ -600,14 +600,14 @@
     - role: awscli
       tags: [command-line-tools, pip-pkg, awscli]
 
-    # DISABLED: using awscli instead.
-    - role: s3cmd
-      tags: [disabled, command-line-tools, s3cmd]
+    # # DISABLED: using awscli instead.
+    # - role: s3cmd
+    #   tags: [disabled, command-line-tools, s3cmd]
 
-    - role: defaultbrowser
-      tags: [command-line-tools, git-pkg, defaultbrowser]
-      vars:
-        defaultbrowser_version: "1.1"
+    # - role: defaultbrowser
+    #   tags: [command-line-tools, git-pkg, defaultbrowser]
+    #   vars:
+    #     defaultbrowser_version: "1.1"
 
     - role: jq
       tags: [command-line-tools, bespoke-pkg, jq]
@@ -615,8 +615,8 @@
     - role: tree
       tags: [command-line-tools, brew-pkg, tree]
 
-    - role: pgsanity
-      tags: [command-line-tools, pip-pkg, pgsanity]
+    # - role: pgsanity
+    #   tags: [command-line-tools, pip-pkg, pgsanity]
 
     - role: ripgrep
       tags: [command-line-tools, brew-pkg, ripgrep]
@@ -627,14 +627,14 @@
     - role: tealdeer
       tags: [command-line-tools, cargo-pkg, tealdeer]
 
-    - role: wrk
-      tags: [command-line-tools, brew-pkg, wrk]
+    # - role: wrk
+    #   tags: [command-line-tools, brew-pkg, wrk]
 
-    - role: websocat
-      tags: [command-line-tools, bespoke-pkg, websocat]
+    # - role: websocat
+    #   tags: [command-line-tools, bespoke-pkg, websocat]
 
-    - role: terminal-notifier
-      tags: [command-line-tools, brew-pkg, terminal-notifier]
+    # - role: terminal-notifier
+    #   tags: [command-line-tools, brew-pkg, terminal-notifier]
 
     #############################################################################
     # Miscellaneous #############################################################
